@@ -1,0 +1,20 @@
+{
+  "name": "C Development Container",
+  "build": {
+    "dockerfile": "../Dockerfile"
+  },
+  "settings": {
+    "terminal.integrated.shell.linux": "/bin/bash",
+    "C_Cpp.default.includePath": ["/usr/include"],
+    "C_Cpp.default.browse.path": ["/usr/include"]
+  },
+  "extensions": [
+    "ms-vscode.cpptools",
+    "ms-vscode.cmake-tools",
+    "xaver.clang-format"
+  ],
+  "mounts": [
+    "source=${localWorkspaceFolder},target=/workspace,type=bind"
+  ],
+  "workspaceFolder": "/workspace"
+}
