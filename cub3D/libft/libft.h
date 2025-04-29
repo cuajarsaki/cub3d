@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   libft.h                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: rhonda <rhonda@student.42.fr>              +#+  +:+       +#+        */
+/*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2023/10/06 20:23:19 by rhonda            #+#    #+#             */
-/*   Updated: 2023/10/29 20:56:26 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/04/29 21:52:58 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@
 # include <unistd.h>
 # include <stdlib.h>
 # include <limits.h>
+# include <stdint.h>
 
 //typedef definition
 typedef struct s_list
