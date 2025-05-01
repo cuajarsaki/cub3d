@@ -6,11 +6,11 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:56:48 by rhonda            #+#    #+#             */
-/*   Updated: 2025/04/29 23:55:17 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/02 00:34:11 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "cube3d.h"
+#include "cub3d.h"
 
 int	main(void)
 {

@@ -3,14 +3,14 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: pchung <pchung@student.42.fr>              +#+  +:+       +#+         #
+#    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/01 17:51:54 by pchung           ###   ########.fr        #
+#    Updated: 2025/05/02 00:32:37 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
-NAME = cube3D
+NAME = cub3D
 
 CC = cc
 CFLAGS = -Wall -Wextra -Werror
@@ -18,7 +18,7 @@ CFLAGS = -Wall -Wextra -Werror
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-MLX_DIR = mlx_linux
+MLX_DIR = ./mlx_linux
 MLX = $(MLX_DIR)/libmlx.a
 
 SRCS = main.c
@@ -29,19 +29,23 @@ OBJS = $(SRCS:.c=.o)
 
 all: $(NAME)
 
-$(NAME): init_mlx $(LIBFT) $(MLX) $(OBJS)
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
 	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -L$(MLX_DIR) -lmlx -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-# MLXライブラリのビルドルール
 $(MLX):
+	@echo "==> Ensuring $(MLX_DIR) exists..."
+	@if [ ! -d "$(MLX_DIR)" ]; then \
+		if ! git config -f .gitmodules --get submodule.$(MLX_DIR).url > /dev/null; then \
+			echo "==> Registering submodule for $(MLX_DIR)"; \
+			git submodule add https://github.com/42paris/minilibx-linux.git $(MLX_DIR); \
+		fi; \
+		git submodule init; \
+		git submodule update --recursive; \
+	fi && \
 	cd $(MLX_DIR) && ./configure && make -f makefile.gen
-
-# MLXのgitサブモジュールを初期化するルール
-init_mlx:
-	git submodule update --init --recursive
 
 clean:
 	$(RM) $(OBJS)
