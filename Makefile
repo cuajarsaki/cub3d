@@ -6,7 +6,7 @@
 #    By: pchung <pchung@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/01 17:41:04 by pchung           ###   ########.fr        #
+#    Updated: 2025/05/01 17:51:54 by pchung           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -50,7 +50,8 @@ clean:
 
 fclean: clean
 	$(RM) $(NAME)
-	$(RM) $(LIBFT)
+	$(RM) $(LIBFT)  
+	$(MAKE) fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
