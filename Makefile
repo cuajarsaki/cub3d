@@ -6,7 +6,7 @@
 #    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/02 01:10:41 by rhonda           ###   ########.fr        #
+#    Updated: 2025/05/02 01:34:09 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -39,10 +39,14 @@ $(MLX):
 	@echo "==> Ensuring submodule '$(MLX_DIR)' is fully initialized..."
 	@if [ ! -f "$(MLX_DIR)/Makefile.gen" ]; then \
 		if [ -d ".git/modules/$(MLX_DIR)" ]; then \
-			echo "==> Cleaning stale Git module directory..."; \
+			echo "==> Cleaning stale Git module dir .git/modules/$(MLX_DIR)"; \
 			rm -rf .git/modules/$(MLX_DIR); \
 		fi; \
-		if ! git config -f .gitmodules --get submodule.$(MLX_DIR).url > /dev/null; then \
+		if git ls-files --error-unmatch $(MLX_DIR) > /dev/null 2>&1; then \
+			echo "==> Cleaning submodule entry from Git index"; \
+			git rm --cached -f $(MLX_DIR); \
+		fi; \
+		if ! git config -f .gitmodules --get submodule.$(MLX_DIR).url > /dev/null 2>&1; then \
 			echo "==> Registering submodule for $(MLX_DIR)"; \
 			git submodule add https://github.com/42paris/minilibx-linux.git $(MLX_DIR); \
 		fi; \
@@ -50,6 +54,7 @@ $(MLX):
 		git submodule update --recursive; \
 	fi && \
 	cd $(MLX_DIR) && ./configure && make -f makefile.gen
+
 
 clean:
 	$(RM) $(OBJS)
