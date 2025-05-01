@@ -6,7 +6,7 @@
 #    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/02 00:32:37 by rhonda           ###   ########.fr        #
+#    Updated: 2025/05/02 01:10:41 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,8 +36,12 @@ $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
 $(MLX):
-	@echo "==> Ensuring $(MLX_DIR) exists..."
-	@if [ ! -d "$(MLX_DIR)" ]; then \
+	@echo "==> Ensuring submodule '$(MLX_DIR)' is fully initialized..."
+	@if [ ! -f "$(MLX_DIR)/Makefile.gen" ]; then \
+		if [ -d ".git/modules/$(MLX_DIR)" ]; then \
+			echo "==> Cleaning stale Git module directory..."; \
+			rm -rf .git/modules/$(MLX_DIR); \
+		fi; \
 		if ! git config -f .gitmodules --get submodule.$(MLX_DIR).url > /dev/null; then \
 			echo "==> Registering submodule for $(MLX_DIR)"; \
 			git submodule add https://github.com/42paris/minilibx-linux.git $(MLX_DIR); \
