@@ -20,6 +20,12 @@ RUN apt-get update && apt-get install -y \
     man-db \
     libc6-dev \
     locales \
+    libxext-dev \
+    zlib1g-dev \
+    libbsd-dev \
+    libgl1-mesa-dev \
+    libglu1-mesa-dev \
+    mesa-utils \
     && apt-get clean
 
 # ロケール設定

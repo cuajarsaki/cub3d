@@ -1,57 +1,71 @@
-
-CC = gcc
-CFLAGS = -Wall -Wextra -Werror
-MLXFLAGS = -lmlx -lXext -lX11 -lm
-
-SRC_DIR = srcs
-INC_DIR = includes
-OBJ_DIR = objs
-LIBFT_DIR = libft
-
-SRC_FILES = $(wildcard $(SRC_DIR)/**/*.c) $(wildcard $(SRC_DIR)/*.c)
-OBJ_FILES = $(patsubst $(SRC_DIR)/%.c, $(OBJ_DIR)/%.o, $(SRC_FILES))
-MAIN_SRC = main.c
-MAIN_OBJ = $(OBJ_DIR)/main.o
+# **************************************************************************** #
+#                                                                              #
+#                                                         :::      ::::::::    #
+#    Makefile                                           :+:      :+:    :+:    #
+#                                                     +:+ +:+         +:+      #
+#    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
+#                                                 +#+#+#+#+#+   +#+            #
+#    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
+#    Updated: 2025/05/02 01:34:09 by rhonda           ###   ########.fr        #
+#                                                                              #
+# **************************************************************************** #
 
 NAME = cub3D
 
+CC = cc
+CFLAGS = -Wall -Wextra -Werror
+
+LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a
 
-INCLUDES = -I$(INC_DIR) -I$(LIBFT_DIR)
+MLX_DIR = ./mlx_linux
+MLX = $(MLX_DIR)/libmlx.a
+
+SRCS = main.c
+OBJS = $(SRCS:.c=.o)
+
+%.o: %.c
+	$(CC) $(CFLAGS) -Iincludes -I/usr/include -O3 -c $< -o $@
 
 all: $(NAME)
 
-$(OBJ_DIR):
-	mkdir -p $(OBJ_DIR)
-	mkdir -p $(OBJ_DIR)/Canvas
-	mkdir -p $(OBJ_DIR)/Casting
-	mkdir -p $(OBJ_DIR)/Checker
-	mkdir -p $(OBJ_DIR)/Keys
-	mkdir -p $(OBJ_DIR)/Map
-	mkdir -p $(OBJ_DIR)/Player
-	mkdir -p $(OBJ_DIR)/Sprites
-	mkdir -p $(OBJ_DIR)/Utils
-
-$(MAIN_OBJ): $(MAIN_SRC) | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
-
-$(OBJ_DIR)/%.o: $(SRC_DIR)/%.c | $(OBJ_DIR)
-	$(CC) $(CFLAGS) $(INCLUDES) -c $< -o $@
+$(NAME): $(LIBFT) $(MLX) $(OBJS)
+	$(CC) $(CFLAGS) $(OBJS) $(LIBFT) -L$(MLX_DIR) -lmlx -L/usr/lib -I$(MLX_DIR) -lXext -lX11 -lm -lz -o $(NAME)
 
 $(LIBFT):
 	$(MAKE) -C $(LIBFT_DIR)
 
-$(NAME): $(LIBFT) $(OBJ_DIR) $(MAIN_OBJ) $(OBJ_FILES)
-	$(CC) $(CFLAGS) $(MAIN_OBJ) $(OBJ_FILES) $(LIBFT) $(MLXFLAGS) -o $(NAME)
+$(MLX):
+	@echo "==> Ensuring submodule '$(MLX_DIR)' is fully initialized..."
+	@if [ ! -f "$(MLX_DIR)/Makefile.gen" ]; then \
+		if [ -d ".git/modules/$(MLX_DIR)" ]; then \
+			echo "==> Cleaning stale Git module dir .git/modules/$(MLX_DIR)"; \
+			rm -rf .git/modules/$(MLX_DIR); \
+		fi; \
+		if git ls-files --error-unmatch $(MLX_DIR) > /dev/null 2>&1; then \
+			echo "==> Cleaning submodule entry from Git index"; \
+			git rm --cached -f $(MLX_DIR); \
+		fi; \
+		if ! git config -f .gitmodules --get submodule.$(MLX_DIR).url > /dev/null 2>&1; then \
+			echo "==> Registering submodule for $(MLX_DIR)"; \
+			git submodule add https://github.com/42paris/minilibx-linux.git $(MLX_DIR); \
+		fi; \
+		git submodule init; \
+		git submodule update --recursive; \
+	fi && \
+	cd $(MLX_DIR) && ./configure && make -f makefile.gen
+
 
 clean:
-	$(MAKE) -C $(LIBFT_DIR) clean
-	rm -rf $(OBJ_DIR)
+	$(RM) $(OBJS)
+	$(MAKE) clean -C $(LIBFT_DIR)
+	$(MAKE) clean -C $(MLX_DIR)
 
 fclean: clean
-	$(MAKE) -C $(LIBFT_DIR) fclean
-	rm -f $(NAME)
+	$(RM) $(NAME)
+	$(RM) $(LIBFT)  
+	$(MAKE) fclean -C $(LIBFT_DIR)
 
 re: fclean all
 
-.PHONY: all clean fclean re bonus
+.PHONY: all clean fclean re init_mlx
