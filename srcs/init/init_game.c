@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 00:22:58 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/09 18:17:25 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/09 23:29:27 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	init_map(t_game *game)
     game->map->grid = NULL;
     game->map->width = 0;
     game->map->height = 0;
-    game->map->floor_color = 0;
-    game->map->ceiling_color = 0;
+    game->map->floor_color = NULL;
+    game->map->ceiling_color = NULL;
 }
 
 void	init_player(t_game *game)
@@ -59,7 +59,7 @@ void	init_player(t_game *game)
     game->player->rot_speed = ROTATION_SPEED;
 }
 
-void	init_game(t_game *game) //! todo: game構造体の中身はポインタにしない？ →一旦ポインタにした
+void	init_game(t_game *game, char *cubfile_name) //! todo: game構造体の中身はポインタにしない？ →一旦ポインタにした
 {
     int i;
 
@@ -71,4 +71,10 @@ void	init_game(t_game *game) //! todo: game構造体の中身はポインタに�
     while (i < 256)
 		game->keys[i++] = 0;
 	game->content = NULL;
+	game->cubfile_name = malloc(sizeof(char) * ft_strlen(cubfile_name));
+	if (!game->cubfile_name)
+	{
+		err_msg(NULL, ERR_MALLOC, 0);
+		return ;
+	}
 }

@@ -38,14 +38,26 @@
 # define ERR_FILE_NOT_CUB "Not a .cub file"
 # define ERR_FILE_NOT_XPM "Not a .xpm file"
 # define ERR_MALLOC "Could not allocate memory"
+# define ERR_TEX_INVAILD "Invalid texture"
+# define ERR_FLOOR_CEILING "Invalid RGB color"
+# define ERR_INVALID_MAP "Wrong or incomplete map"
 
-/* exit code */
+/* return code */
 # define SUCCESS 0
 # define FAILURE 1
+# define ERR 2
+# define BREAK 3
+# define CONTINUE 4
 
 /* file type */
 # define CUB 0
 # define XPM 1
+
+/* direction code */
+# define NORTH 0
+# define SOUTH 1
+# define EAST 2
+# define WEST 3
 
 /* 構造体定義 */
 typedef struct s_vector {
@@ -93,8 +105,8 @@ typedef struct s_map {
     char **grid;
     int width;
     int height;
-    int floor_color;
-    int ceiling_color;
+    int *floor_color;
+    int *ceiling_color;
 } t_map;
 
 typedef struct s_mlx {
@@ -114,22 +126,30 @@ typedef struct s_game {
     t_texinfo textures[4];
     int keys[256];
 	char **content;
+	char *cubfile_name;
 } t_game;
 
 /* プロトタイプ宣言 */
 // init
-void	init_game(t_game *game);
+void	init_game(t_game *game, char *cubfile_name);
 
 // parse
 int 	parse_args(t_game *game, char **argv);
 int		check_file_type(char *file, bool file_type);
 void	parse_game(t_game *game, char *file);
+int		get_file_data(t_game *game, char **content);
+int		get_color_texture(t_game *game, t_map *map, char *line, int j);
+int		get_map(t_game *game, char **content, int i);
+
+// cleanup
+int		free_game(t_game *game);
+void	free_tab(void **tab);
 
 // utils
 int 	err_msg(char *detail, char *msg, int code);
 void	clean_exit(t_game *game, int code);
-int		free_game(t_game *game);
-void	free_tab(void **tab);
 
+// debug
+void	print_tab(char **content);
 
 #endif

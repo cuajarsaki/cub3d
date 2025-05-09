@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 16:29:52 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/05 02:09:18 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/09 18:35:03 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,7 @@ void	dup_content(char **content, char *file)
 			line = get_next_line(fd);
 		}
 	}
+	close(fd);
 }
 
 void	parse_game(t_game *game, char *file)

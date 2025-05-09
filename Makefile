@@ -6,7 +6,7 @@
 #    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/05 02:17:37 by rhonda           ###   ########.fr        #
+#    Updated: 2025/05/09 23:12:29 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -28,6 +28,9 @@ SRCS = main.c \
 	srcs/parse/check_file_type.c \
 	srcs/parse/parse_args.c \
 	srcs/parse/parse_game.c \
+	srcs/parse/get_file_data.c \
+	srcs/parse/get_color_texture.c \
+	srcs/parse/get_map.c \
 	srcs/utils/error.c \
 	srcs/utils/exit.c 
 OBJS = $(SRCS:.c=.o)
