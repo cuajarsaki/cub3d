@@ -6,7 +6,7 @@
 #    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/02 01:34:09 by rhonda           ###   ########.fr        #
+#    Updated: 2025/05/05 02:17:37 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,12 +16,20 @@ CC = cc
 CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = ./libft
-LIBFT = $(LIBFT_DIR)/libft.a
+LIBFT = $(LIBFT_DIR)/libft.a \
+	$(LIBFT_DIR)/libgnl.a
 
 MLX_DIR = ./mlx_linux
 MLX = $(MLX_DIR)/libmlx.a
 
-SRCS = main.c
+SRCS = main.c \
+	srcs/cleanup/free.c \
+	srcs/init/init_game.c \
+	srcs/parse/check_file_type.c \
+	srcs/parse/parse_args.c \
+	srcs/parse/parse_game.c \
+	srcs/utils/error.c \
+	srcs/utils/exit.c 
 OBJS = $(SRCS:.c=.o)
 
 %.o: %.c
