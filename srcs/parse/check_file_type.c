@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 01:40:33 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/04 16:28:39 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/10 17:50:47 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,7 +51,7 @@ static bool	is_xpm_file(char *file)
 	return (true);
 }
 
-int	check_file_type(char *file, bool file_type)
+int	check_file_type(char *file, int file_type)
 {
     int fd;
 

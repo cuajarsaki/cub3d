@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 18:43:40 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/10 01:57:14 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/10 23:49:08 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,6 +92,10 @@ static int	get_info(t_game *game, char **content, int i, int j)
 	// map
 	else if (ft_isdigit(content[i][j]))
 	{
+		if (!game->map->floor_color || !game->map->ceiling_color
+			|| !game->textures[NORTH].path || !game->textures[SOUTH].path
+			|| !game->textures[EAST].path || !game->textures[WEST].path)
+			return (err_msg(game->cubfile_name, ERR_MAP_END, FAILURE));
 		if (get_map(game, content, i) == FAILURE)
 			return (err_msg(game->cubfile_name, ERR_INVALID_MAP, FAILURE));
 		return (SUCCESS);

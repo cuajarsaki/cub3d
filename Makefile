@@ -6,7 +6,7 @@
 #    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/09 23:12:29 by rhonda           ###   ########.fr        #
+#    Updated: 2025/05/10 23:41:05 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -17,7 +17,7 @@ CFLAGS = -Wall -Wextra -Werror
 
 LIBFT_DIR = ./libft
 LIBFT = $(LIBFT_DIR)/libft.a \
-	$(LIBFT_DIR)/libgnl.a
+	$(LIBFT_DIR)/libgnl.a		## todo: lobprintf.a入れる
 
 MLX_DIR = ./mlx_linux
 MLX = $(MLX_DIR)/libmlx.a
@@ -31,6 +31,10 @@ SRCS = main.c \
 	srcs/parse/get_file_data.c \
 	srcs/parse/get_color_texture.c \
 	srcs/parse/get_map.c \
+	srcs/parse/check_textures_validity.c \
+	srcs/parse/check_map_validity.c \
+	srcs/parse/check_map_borders.c \
+	srcs/parse/check_player_surround.c \
 	srcs/utils/error.c \
 	srcs/utils/exit.c 
 OBJS = $(SRCS:.c=.o)

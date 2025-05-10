@@ -41,6 +41,17 @@
 # define ERR_TEX_INVAILD "Invalid texture"
 # define ERR_FLOOR_CEILING "Invalid RGB color"
 # define ERR_INVALID_MAP "Wrong or incomplete map"
+# define ERR_TEX_MISSING "Missing texture"
+# define ERR_COLOR_MISSING "Missing color"
+# define ERR_TEX_RGB_VAL "Invalid RGB value (0-255)"
+# define ERR_MAP_MISSING "Missing map"
+# define ERR_MAP_NO_CLOSED "Map is not closed by walls"
+# define ERR_MAP_TOO_SMALL "Map is too small"
+# define ERR_INV_CHAR "Invalid character in map"
+# define ERR_NUM_PLAYER "Invalid num of player"
+# define ERR_PLAYER_DIR "Map has no player position (N, S, E, W)"
+# define ERR_PLAYER_POS "Invalid player position"
+# define ERR_MAP_END "Map is not at the end of the file"
 
 /* return code */
 # define SUCCESS 0
@@ -102,11 +113,14 @@ typedef struct s_ray {
 } t_ray;
 
 typedef struct s_map {
-    char **grid;
-    int width;
-    int height;
-    int *floor_color;
-    int *ceiling_color;
+    char 			**grid;
+    int 			width;
+    int 			height;
+    int 			*floor_color;
+    int 			*ceiling_color;
+	unsigned int	floor_hex;
+	unsigned int	ceiling_hex;
+	char			start_dir;
 } t_map;
 
 typedef struct s_mlx {
@@ -135,11 +149,15 @@ void	init_game(t_game *game, char *cubfile_name);
 
 // parse
 int 	parse_args(t_game *game, char **argv);
-int		check_file_type(char *file, bool file_type);
+int		check_file_type(char *file, int file_type);
 void	parse_game(t_game *game, char *file);
 int		get_file_data(t_game *game, char **content);
 int		get_color_texture(t_game *game, t_map *map, char *line, int j);
 int		get_map(t_game *game, char **content, int i);
+int		check_textures_validity(t_game *game, t_texinfo *textures, t_map *map);
+int		check_map_validity(t_game *game, t_map *map);
+int		check_map_borders(t_map *map, char **grid);
+int		check_player_surround(t_game *game, char **grid);
 
 // cleanup
 int		free_game(t_game *game);
@@ -147,6 +165,7 @@ void	free_tab(void **tab);
 
 // utils
 int 	err_msg(char *detail, char *msg, int code);
+int		err_msg_int(int detail, char *msg, int code);
 void	clean_exit(t_game *game, int code);
 
 // debug

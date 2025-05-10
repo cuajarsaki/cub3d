@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 00:22:58 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/09 23:29:27 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/10 19:42:58 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,9 @@ void	init_map(t_game *game)
     game->map->height = 0;
     game->map->floor_color = NULL;
     game->map->ceiling_color = NULL;
+	game->map->floor_hex = 0xFFFFFFFF;
+	game->map->ceiling_hex = 0xFFFFFFFF;
+	game->map->start_dir = '0';
 }
 
 void	init_player(t_game *game)
