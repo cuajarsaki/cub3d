@@ -12,7 +12,7 @@ NAME = $(ARCHIVE_LIBFT) $(ARCHIVE_PRINTF) $(ARCHIVE_GNL)
 
 all: 
 	make -C $(COMMON_DIR_NAME) bonus
-	make -C $(PRINTF_DIR_NAME)
+	# make -C $(PRINTF_DIR_NAME)
 	make -C $(GNL_DIR_NAME)
 
 clean:
