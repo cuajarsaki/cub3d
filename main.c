@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:56:48 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/11 01:39:08 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/25 13:23:28 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,16 +42,18 @@ int	main(int argc, char **argv)
 	init_game(&game, argv[1]);
 	if (parse_args(&game, argv) != 0)
 		return (1);
-	printf("========== game info ==========\n");
-	printf("game.textures[NORTH].path: %s\n", game.textures[NORTH].path);
-	printf("game.textures[SOUTH].path: %s\n", game.textures[SOUTH].path);
-	printf("game.textures[EAST].path: %s\n", game.textures[EAST].path);
-	printf("game.textures[WEST].path: %s\n", game.textures[WEST].path);
-	printf("game.map->floor_color: %X\n", game.map->floor_hex);
-	printf("game.map->ceiling_color: %X\n", game.map->ceiling_hex);
-	printf("game.map->height: %d\n", game.map->height);
-	printf("game.map->width: %d\n", game.map->width);
-	printf("========== game.map->grid ==========\n");
-	print_tab(game.map->grid);
+	init_mlx_window(&game);
+	mlx_loop(game.mlx->mlx_ptr);
+	// printf("========== game info ==========\n");
+	// printf("game.textures[NORTH].path: %s\n", game.textures[NORTH].path);
+	// printf("game.textures[SOUTH].path: %s\n", game.textures[SOUTH].path);
+	// printf("game.textures[EAST].path: %s\n", game.textures[EAST].path);
+	// printf("game.textures[WEST].path: %s\n", game.textures[WEST].path);
+	// printf("game.map->floor_color: %X\n", game.map->floor_hex);
+	// printf("game.map->ceiling_color: %X\n", game.map->ceiling_hex);
+	// printf("game.map->height: %d\n", game.map->height);
+	// printf("game.map->width: %d\n", game.map->width);
+	// printf("========== game.map->grid ==========\n");
+	// print_tab(game.map->grid);
 	return (0);
 }

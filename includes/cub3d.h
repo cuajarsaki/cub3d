@@ -52,6 +52,8 @@
 # define ERR_PLAYER_DIR "Map has no player position (N, S, E, W)"
 # define ERR_PLAYER_POS "Invalid player position"
 # define ERR_MAP_END "Map is not at the end of the file"
+# define ERR_MLX_START "Could not start mlx"
+# define ERR_MLX_WIN "Could not create mlx window"
 
 /* return code */
 # define SUCCESS 0
@@ -146,6 +148,7 @@ typedef struct s_game {
 /* プロトタイプ宣言 */
 // init
 void	init_game(t_game *game, char *cubfile_name);
+void	init_mlx_window(t_game *game);
 
 // parse
 int 	parse_args(t_game *game, char **argv);

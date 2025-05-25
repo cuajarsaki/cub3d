@@ -6,7 +6,7 @@
 #    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/10 23:41:05 by rhonda           ###   ########.fr        #
+#    Updated: 2025/05/25 13:19:03 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -25,6 +25,7 @@ MLX = $(MLX_DIR)/libmlx.a
 SRCS = main.c \
 	srcs/cleanup/free.c \
 	srcs/init/init_game.c \
+	srcs/init/init_mlx_info.c \
 	srcs/parse/check_file_type.c \
 	srcs/parse/parse_args.c \
 	srcs/parse/parse_game.c \
