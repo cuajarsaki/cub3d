@@ -6,7 +6,7 @@
 #    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/25 13:19:03 by rhonda           ###   ########.fr        #
+#    Updated: 2025/05/26 01:56:50 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -36,6 +36,7 @@ SRCS = main.c \
 	srcs/parse/check_map_validity.c \
 	srcs/parse/check_map_borders.c \
 	srcs/parse/check_player_surround.c \
+	srcs/render/render.c \
 	srcs/utils/error.c \
 	srcs/utils/exit.c 
 OBJS = $(SRCS:.c=.o)

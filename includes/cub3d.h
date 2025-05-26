@@ -21,7 +21,7 @@
 # define WINDOW_HEIGHT 600
 # define MOVE_SPEED 0.05
 # define ROTATION_SPEED 0.03
-# define FOV 60
+# define FOV 0.9
 
 /* キー定義 */
 # define KEY_ESC 53
@@ -71,6 +71,10 @@
 # define SOUTH 1
 # define EAST 2
 # define WEST 3
+
+/* side in DDA */
+# define X 0
+# define Y 1
 
 /* 構造体定義 */
 typedef struct s_vector {
@@ -161,6 +165,9 @@ int		check_textures_validity(t_game *game, t_texinfo *textures, t_map *map);
 int		check_map_validity(t_game *game, t_map *map);
 int		check_map_borders(t_map *map, char **grid);
 int		check_player_surround(t_game *game, char **grid);
+
+// render
+int	render(t_game *game);
 
 // cleanup
 int		free_game(t_game *game);

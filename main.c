@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:56:48 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/25 13:23:28 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/25 19:54:28 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,7 @@ int	main(int argc, char **argv)
 	if (parse_args(&game, argv) != 0)
 		return (1);
 	init_mlx_window(&game);
+	render(&game);
 	mlx_loop(game.mlx->mlx_ptr);
 	// printf("========== game info ==========\n");
 	// printf("game.textures[NORTH].path: %s\n", game.textures[NORTH].path);
