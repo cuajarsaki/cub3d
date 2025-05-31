@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 02:44:56 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/31 17:45:12 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/06/01 00:49:37 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -101,7 +101,8 @@ int	free_game(t_game *game)
 	if (game->player)
 		free_player(game->player);
 	free_texinfo(game->textures);
-	free_tab((void *)game->content);
+	if (game->content)
+		free_tab((void *)game->content);
 	free(game->cubfile_name);
 	return (SUCCESS);
 }
