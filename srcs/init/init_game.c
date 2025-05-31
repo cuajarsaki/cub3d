@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 00:22:58 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/10 19:42:58 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/31 17:35:01 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ void	init_game(t_game *game, char *cubfile_name) //! todo: game構造体の中�
     while (i < 256)
 		game->keys[i++] = 0;
 	game->content = NULL;
-	game->cubfile_name = malloc(sizeof(char) * ft_strlen(cubfile_name));
+	game->cubfile_name = malloc(sizeof(char) * (ft_strlen(cubfile_name) + 1));
 	if (!game->cubfile_name)
 	{
 		err_msg(NULL, ERR_MALLOC, 0);

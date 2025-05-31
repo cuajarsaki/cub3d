@@ -6,7 +6,7 @@
 #    By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2025/04/29 20:00:57 by rhonda            #+#    #+#              #
-#    Updated: 2025/05/26 01:56:50 by rhonda           ###   ########.fr        #
+#    Updated: 2025/05/31 16:42:08 by rhonda           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -26,6 +26,7 @@ SRCS = main.c \
 	srcs/cleanup/free.c \
 	srcs/init/init_game.c \
 	srcs/init/init_mlx_info.c \
+	srcs/input/hook.c \
 	srcs/parse/check_file_type.c \
 	srcs/parse/parse_args.c \
 	srcs/parse/parse_game.c \

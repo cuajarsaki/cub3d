@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/09 20:04:29 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/10 01:48:20 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/31 17:27:46 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,6 +49,7 @@ static int	*rgb_atoi(char **rgb_str, int *rgb_num)
 
 static int	*get_rgb(char *line, int j)
 {
+	char	*rgb_line;
 	char	**rgb_str;
 	int		count;
 	int		*rgb_num;
@@ -59,7 +60,9 @@ static int	*get_rgb(char *line, int j)
 	len = j;
 	while (line[len] && line[len] != ' ' && line[len] != '\t' && line[len] != '\n')
 		len++;
-	rgb_str = ft_split(ft_substr(line, j, len - j), ',');
+	rgb_line = ft_substr(line, j, len - j);
+	rgb_str = ft_split(rgb_line, ',');
+	free(rgb_line);
 	count = 0;
 	while (rgb_str[count])
 		count++;

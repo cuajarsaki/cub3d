@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/04 02:44:56 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/05 01:59:15 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/31 17:45:12 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ static void	free_mlx(t_mlx *mlx)
 		free(mlx->mlx_ptr);
 	}
 	// todo: img_ptr, img_data free
+	free(mlx);
 }
 
 static void	free_map(t_map *map)
@@ -50,6 +51,11 @@ static void	free_map(t_map *map)
 		return ;
 	if (map->grid)
 		free_tab((void *)map->grid);
+	if (map->ceiling_color)
+		free(map->ceiling_color);
+	if (map->floor_color)
+		free(map->floor_color);
+	free(map);
 }
 
 static void	free_player(t_player *player)
@@ -62,6 +68,7 @@ static void	free_player(t_player *player)
 		free(player->dir);
 	if (player->plane)
 		free(player->plane);
+	free(player);
 }
 
 static void free_texinfo(t_texinfo *textures) // todo: あってる？
@@ -95,5 +102,6 @@ int	free_game(t_game *game)
 		free_player(game->player);
 	free_texinfo(game->textures);
 	free_tab((void *)game->content);
+	free(game->cubfile_name);
 	return (SUCCESS);
 }

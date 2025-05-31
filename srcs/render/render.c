@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 19:54:44 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/27 00:13:05 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/05/31 17:53:08 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,7 @@ int	init_player_direction(t_game *game)
 }
 
 int	render(t_game *game)
-{
-	init_player_direction(game);
-	
+{	
 	// raycasting loop
 	// while (1)
 	// {
@@ -138,10 +136,10 @@ int	render(t_game *game)
 			else
 				ray.perp_wall_dist = ray.side_dist.y - ray.delta_dist.y;
 			
-			if (ray.side == X)
-				printf("ray.side X: dist = %f, sideX = %f, deltaX = %f\n", ray.perp_wall_dist, ray.side_dist.x, ray.delta_dist.x);
-			else
-				printf("ray.side Y: dist = %f, sideY = %f, deltaY = %f\n", ray.perp_wall_dist, ray.side_dist.y, ray.delta_dist.y);
+			// if (ray.side == X)
+			// 	printf("ray.side X: dist = %f, sideX = %f, deltaX = %f\n", ray.perp_wall_dist, ray.side_dist.x, ray.delta_dist.x);
+			// else
+			// 	printf("ray.side Y: dist = %f, sideY = %f, deltaY = %f\n", ray.perp_wall_dist, ray.side_dist.y, ray.delta_dist.y);
 
 			
 			// calculate height of line to draw on screen
@@ -191,6 +189,7 @@ int	render(t_game *game)
 				mlx_pixel_put(game->mlx->mlx_ptr, game->mlx->win_ptr, x, y, game->map->floor_hex);
 			}
 		
+			// // debug
 			// if (x % 100 == 0)
 			// 	printf("x = %d, cameraX = %f, rayDir = (%f, %f)\n", x, cameraX, ray.dir.x, ray.dir.y);
 			// if (x % 100 == 0)

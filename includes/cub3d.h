@@ -15,6 +15,7 @@
 # include <sys/time.h>
 # include <stdbool.h>
 # include <errno.h>
+// # include <X11/keysym.h>
 
 /* 定数定義 */
 # define WINDOW_WIDTH 800
@@ -24,13 +25,21 @@
 # define FOV 0.9
 
 /* キー定義 */
-# define KEY_ESC 53
-# define KEY_W 13
-# define KEY_A 0
-# define KEY_S 1
-# define KEY_D 2
+# define KEY_ESC 65307
+# define KEY_W 119
+# define KEY_A 97
+# define KEY_S 115
+# define KEY_D 100
 # define KEY_LEFT 123
 # define KEY_RIGHT 124
+
+/* Event */
+# define ON_DESTROY 17
+# define ON_KEYDOWN 2
+
+/* Event Mast */
+# define BUTTON_PRESS_MASK (1L << 2)
+# define KEY_PRESS_MASK (1L << 0)
 
 /* Error Message */
 # define ERR_USAGE "usage: ./cub3D <path_to_map.cub>"
@@ -168,6 +177,10 @@ int		check_player_surround(t_game *game, char **grid);
 
 // render
 int	render(t_game *game);
+int	init_player_direction(t_game *game);
+
+// input
+void	register_hook(t_game *game);
 
 // cleanup
 int		free_game(t_game *game);
