@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/25 19:54:44 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/31 17:53:08 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/06/01 17:30:27 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,6 +63,9 @@ int	init_player_direction(t_game *game)
 
 int	render(t_game *game)
 {	
+	// render の一番上で
+	mlx_clear_window(game->mlx->mlx_ptr, game->mlx->win_ptr);
+
 	// raycasting loop
 	// while (1)
 	// {

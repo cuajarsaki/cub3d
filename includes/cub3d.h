@@ -21,7 +21,7 @@
 # define WINDOW_WIDTH 800
 # define WINDOW_HEIGHT 600
 # define MOVE_SPEED 0.05
-# define ROTATION_SPEED 0.03
+# define ROTATION_SPEED 0.3
 # define FOV 0.9
 
 /* キー定義 */
@@ -30,8 +30,8 @@
 # define KEY_A 97
 # define KEY_S 115
 # define KEY_D 100
-# define KEY_LEFT 123
-# define KEY_RIGHT 124
+# define KEY_LEFT 65361
+# define KEY_RIGHT 65363
 
 /* Event */
 # define ON_DESTROY 17
