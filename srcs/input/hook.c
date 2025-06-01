@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/05/28 01:24:01 by rhonda            #+#    #+#             */
-/*   Updated: 2025/06/01 17:25:48 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/06/01 22:42:39 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,6 +18,7 @@ int	destroy_handler(t_game *game)
 	return (0);
 }
 
+// この関数での変更は、loop中のrenderが勝手に反映してくれる
 int	key_handler(int key, t_game *game)
 {
 	int	x;
@@ -25,11 +26,13 @@ int	key_handler(int key, t_game *game)
 
 	if (!game->player || !game->player->pos)
 		return (0);
-	printf("key pressed: %d\n", key);
+	// printf("key pressed: %d\n", key);
 	x = (int)game->player->pos->x;
 	y = (int)game->player->pos->y;
+	// Escは red cross button と一緒でプログラムを安全に終了する
 	if (key == KEY_ESC)
 		destroy_handler(game);
+	// WASDは player->pos を1マス動かす
 	if (key == KEY_W && y > 0 && game->map->grid[y - 1][x] != '1')
 		game->player->pos->y -= 1;
 	if (key == KEY_A && x > 0 && game->map->grid[y][x - 1] != '1')
@@ -38,6 +41,7 @@ int	key_handler(int key, t_game *game)
 		game->player->pos->y += 1;
 	if (key == KEY_D && x + 1 < game->map->width && game->map->grid[y][x + 1] != '1')
 		game->player->pos->x += 1;
+	// 左右矢印キーは player->dir と player->(camera)plane を回転させる（回転行列を参照）
 	if (key == KEY_LEFT)
 	{
 		// 回転行列の公式
@@ -63,12 +67,15 @@ int	key_handler(int key, t_game *game)
 
 void	register_hook(t_game *game)
 {
+	// red cross button
 	mlx_hook(game->mlx->win_ptr, ON_DESTROY, BUTTON_PRESS_MASK, destroy_handler, game);
+	// WASD and Esc
 	mlx_hook(game->mlx->win_ptr, ON_KEYDOWN, KEY_PRESS_MASK, key_handler, game);
+	// render loop
 	mlx_loop_hook(game->mlx->mlx_ptr, render, game);
 }
 
-/** （参考）　回転行列
+/** （参考）　回転行列の公式
  * 
  *  ベクトル dir(x, y) を左方向（反時計回り）に θ度 回転させるとき、回転後のベクトル dir(newX, newY) は、
  * 

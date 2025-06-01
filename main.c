@@ -6,7 +6,7 @@
 /*   By: rhonda <rhonda@student.42tokyo.jp>         +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/29 19:56:48 by rhonda            #+#    #+#             */
-/*   Updated: 2025/05/31 23:14:03 by rhonda           ###   ########.fr       */
+/*   Updated: 2025/06/01 22:52:18 by rhonda           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,6 +44,7 @@ int	main(int argc, char **argv)
 		return (1);
 	init_mlx_window(&game);
 	init_player_direction(&game);
+	// first rendering
 	render(&game);
 	register_hook(&game);
 	mlx_loop(game.mlx->mlx_ptr);
